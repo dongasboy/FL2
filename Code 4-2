@@ -1,0 +1,31 @@
+import numpy as np
+
+# End time [s]
+t_end = 2
+
+# Time increments [s]
+h = 0.1
+
+# Points
+N = int(t_end / h + 1)
+
+# Time
+t = np.linspace(0, t_end, N)
+
+# x
+x = np.linspace(0, t_end, N)
+
+# Initial condition
+x[0] = 1
+
+# Euler method calculation
+for i in range(N-1):
+    k = h * (t[i] * x[i])
+    x[i+1] = x[i] + k
+
+# Write to csv file
+with open('practice_Euler1.csv', 'w', newline='') as f:
+    f.write('time,x\n')  # line feed code
+    for i in range(N):
+        f.write(str(t[i]) + ',' + str(x[i]) + '\n')
+    f.write('\n')
