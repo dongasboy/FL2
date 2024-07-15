@@ -20,5 +20,5 @@ with open('practice_true.csv', 'w', newline='') as f:
     f.write('time,Exact_solution\n')  
     f.write('\n') # line feed code
     for i in range(N):
-        f.write(str(t[i]) + ',' + str(x_true[i]) + '\n')
-    f.write('\n')
+        f.write(str(t[i]) + ',' + str(x_true[i]))
+        f.write('\n')
