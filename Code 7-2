@@ -1,0 +1,48 @@
+import numpy as np
+
+# End time [s]
+t_end = 10
+
+# Time increments [s]
+h = 0.01
+
+# Points
+N = int(t_end / h + 1)
+
+# Gravitational acceleration [m / s^2]
+G = 9.8119
+
+# Pendulum length [m]
+L = 0.7098
+
+# Times of Day
+t = np.linspace(0, t_end, N)
+
+# Angular velocity [rad / s]
+omega = np.linspace(0, t_end, N)
+
+# Angle [rad]
+theta = np.linspace(0, t_end, N)
+
+# Initial conditions
+omega[0] = 0  # rad/s
+theta[0] = 30 / 180 * np.pi  # rad
+
+# Runge-Kutta method
+for i in range(N-1):
+    k1 = h * (-G / L * np.sin(theta[i]))
+    m1 = h * omega[i]
+    k2 = h * (-G / L * np.sin(theta[i] + m1 / 2))
+    m2 = h * (omega[i] + k1 / 2)
+    k3 = h * (-G / L * np.sin(theta[i] + m2 / 2))
+    m3 = h * (omega[i] + k2 / 2)
+    k4 = h * (-G / L * np.sin(theta[i] + m3))
+    m4 = h * (omega[i] + k3)
+    omega[i+1] = omega[i] + (k1 + 2*k2 + 2*k3 + k4) / 6
+    theta[i+1] = theta[i] + (m1 + 2*m2 + 2*m3 + m4) / 6
+
+# Write to csv file
+with open('pendulum_Runge-Kutta.csv', 'w', newline='') as f:
+    for i in range(N):
+        f.write(str(t[i]) + ';' + str(theta[i]) + '\n')
+        f.write('\n')
