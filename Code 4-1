@@ -16,7 +16,7 @@ t = np.linspace(0, t_end, N)
 x_true = np.exp(t ** 2 / 2)  # operator ** represents power
 
 # Write to csv file
-with open('practice_true.csv', 'w', newline='') as f:
+with open('practice_true.csv', 'w') as f:
     f.write('time,Exact_solution\n')  
     f.write('\n') # line feed code
     for i in range(N):
