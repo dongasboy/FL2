@@ -50,8 +50,7 @@ for i in range(len(theta_data)-1):
     if theta_data[i+1]<0 and theta_data[i]>0:
         num+=1
         idt.append(i)
-print(num)
-print()
+print("Period")
 print((t_data[idt[1]]-t_data[idt[0]]))
 
 plt.rcParams['xtick.direction'] = 'in'
