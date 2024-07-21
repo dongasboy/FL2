@@ -10,7 +10,7 @@ h = 0.01
 N = int(t_end / h + 1)
 
 # Gravitational acceleration [m / s^2]
-G = 9.8119
+G = 9.90
 
 # Pendulum length [m]
 L = 0.7098
